@@ -179,7 +179,7 @@ export default function Team() {
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className="absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 sm:w-64 bg-black/90 border border-white/20 p-4 sm:p-6 backdrop-blur-md shadow-2xl"
+                  className="absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 sm:w-64 bg-black/90 border border-white/20 p-4 sm:p-6 backdrop-blur-md shadow-2xl"
                 >
                   <div className="flex justify-between items-start mb-4 border-b border-white/10 pb-2">
                     <span className="text-[8px] sm:text-[10px] tracking-[0.3em] text-white/50 uppercase">Visual Data</span>
@@ -200,9 +200,9 @@ export default function Team() {
 
           {/* Right: Info */}
           <div className="w-1/2 h-full flex flex-col justify-center items-start text-left pl-4 sm:pl-8 md:pl-20">
-            <div className="space-y-6 sm:space-y-8 md:space-y-12 w-full max-w-md">
+            <div className="space-y-4 sm:space-y-8 md:space-y-12 w-full max-w-md">
               <div>
-                <div className="mb-3 md:mb-4 opacity-40">
+                <div className="mb-2 md:mb-4 opacity-40">
                   <currentMember.icon className="w-4 h-4 md:w-5 md:h-5" strokeWidth={1} />
                 </div>
                 <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-1 md:mb-2">NAME</h4>
@@ -210,12 +210,12 @@ export default function Team() {
               </div>
               
               <div>
-                <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 md:mb-4">PROFILE DATA</h4>
-                <div className="grid grid-cols-2 gap-x-6 sm:gap-x-12 gap-y-4 sm:gap-y-6">
+                <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 md:mb-4">PROFILE DATA</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-12 gap-y-2 sm:gap-y-6">
                   {currentMember.stats.map((stat, idx) => (
-                    <div key={idx} className={`flex flex-col ${stat.label === 'WEAPON' ? 'col-span-2' : ''}`}>
+                    <div key={idx} className={`flex flex-col ${stat.label === 'WEAPON' ? 'sm:col-span-2' : ''}`}>
                       <span className="text-[6px] sm:text-[8px] md:text-[10px] text-white/40 tracking-[0.2em] mb-1">{stat.label}</span>
-                      <span className="text-xs sm:text-sm md:text-lg text-white/80 tracking-widest font-light">{stat.value}</span>
+                      <span className="text-[10px] sm:text-sm md:text-lg text-white/80 tracking-widest font-light">{stat.value}</span>
                     </div>
                   ))}
                 </div>
@@ -230,7 +230,7 @@ export default function Team() {
               </div>
 
               {/* Chat Button */}
-              <div className="pt-4 sm:pt-6 md:pt-8 border-t border-white/10 w-full">
+              <div className="pt-3 sm:pt-6 md:pt-8 border-t border-white/10 w-full">
                 {currentMember.chatLink ? (
                   <a 
                     href={currentMember.chatLink} 
@@ -254,7 +254,7 @@ export default function Team() {
       </AnimatePresence>
 
       {/* Scroll Indicator */}
-      <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 flex flex-col gap-3 md:gap-4">
+      <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 flex flex-col gap-3 md:gap-4 z-20">
         {TEAM.map((_, idx) => (
           <div 
             key={idx} 
