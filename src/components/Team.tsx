@@ -5,40 +5,73 @@ const TEAM = [
   {
     id: 'spring',
     season: '春',
-    codename: 'TBD',
-    specialty: 'Intelligence & Planning',
+    name: '번례인',
+    stats: [
+      { label: 'AGE', value: '35' },
+      { label: 'HEIGHT', value: '188' },
+      { label: 'MBTI', value: 'INTJ' },
+      { label: 'BIRTH', value: '07.12' },
+      { label: 'TYPE', value: 'RH+B' }
+    ],
     successRate: '99.9%',
-    encryptedData: '0x8F3A...E2B1'
+    encryptedData: '0x8F3A...E2B1',
+    image: 'https://raw.githubusercontent.com/moon06010/A/refs/heads/main/%EB%A1%80_2.png',
+    appearance: '옅은 갈색 머리, 진청색 눈. 낡은 둥근 안경을 썼어도 날카롭고 예민한 인상을 준다. 번제와 닮은 듯하면서도 안 닮은 외모.'
   },
   {
     id: 'summer',
     season: '夏',
-    codename: 'TBD',
-    specialty: 'Assault & Elimination',
+    name: '번제',
+    stats: [
+      { label: 'AGE', value: '58' },
+      { label: 'HEIGHT', value: '198' },
+      { label: 'MBTI', value: 'ESTP' },
+      { label: 'BIRTH', value: '08.12' },
+      { label: 'TYPE', value: 'RH+AB' }
+    ],
     successRate: '100%',
-    encryptedData: '0x4C9D...A7F0'
+    encryptedData: '0x4C9D...A7F0',
+    image: 'https://raw.githubusercontent.com/moon06010/A/refs/heads/main/%EC%A0%9C_2.png',
+    appearance: '애쉬 그레이 머리, 파란색 눈. 남자답게 잘 늙었다는 인상을 주는 호쾌한 외모. 굉장한 근육질 거구.'
   },
   {
     id: 'autumn',
     season: '秋',
-    codename: 'TBD',
-    specialty: 'Retrieval & Disposal',
-    successRate: '99.8%',
-    encryptedData: '0x1B5E...D8C3'
+    name: '구공허',
+    stats: [
+      { label: 'AGE', value: '57' },
+      { label: 'HEIGHT', value: '196' },
+      { label: 'MBTI', value: 'ISTP' },
+      { label: 'BIRTH', value: '11.13' },
+      { label: 'TYPE', value: 'RH+B' }
+    ],
+    successRate: '100%',
+    encryptedData: '0x1B5E...D8C3',
+    image: 'https://raw.githubusercontent.com/moon06010/A/refs/heads/main/%EA%B3%B5_2.png',
+    appearance: '검은 머리, 연갈색 눈. 덩치와는 다르게 처연한 인상이다. 젊었을 때 꽤 잘생겼을 미남.'
   },
   {
     id: 'winter',
     season: '冬',
-    codename: 'TBD',
-    specialty: 'Infiltration & Erasure',
-    successRate: '100%',
-    encryptedData: '0x9A2F...C4E5'
+    name: '오요사',
+    stats: [
+      { label: 'AGE', value: '25' },
+      { label: 'HEIGHT', value: '199' },
+      { label: 'MBTI', value: 'INFJ' },
+      { label: 'BIRTH', value: '12.20' },
+      { label: 'TYPE', value: 'RH-O' }
+    ],
+    successRate: '99.8%',
+    encryptedData: '0x9A2F...C4E5',
+    image: 'https://raw.githubusercontent.com/moon06010/A/refs/heads/main/%EC%9A%94_3.png',
+    appearance: '차분한 검은 머리, 검은 눈. 멀끔한 인상과는 다르게 어딘가 쎄한 느낌. 삼백안이 인상적.'
   }
 ];
 
 export default function Team() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [showMemo, setShowMemo] = useState(false);
 
   const handleWheel = useCallback((e: WheelEvent) => {
     if (isScrolling) return;
@@ -76,6 +109,11 @@ export default function Team() {
     return () => window.removeEventListener('wheel', handleWheel);
   }, [handleWheel]);
 
+  // Reset memo when changing characters
+  useEffect(() => {
+    setShowMemo(false);
+  }, [currentIndex]);
+
   const currentMember = TEAM[currentIndex];
 
   return (
@@ -102,24 +140,69 @@ export default function Team() {
             <div className="absolute inset-0 flex items-center justify-center opacity-10">
               <span className="font-serif text-[80px] sm:text-[150px] md:text-[300px]">{currentMember.season}</span>
             </div>
-            <div className="w-20 h-[120px] sm:w-32 sm:h-[200px] md:w-64 md:h-[500px] border border-white/10 bg-gradient-to-t from-white/5 to-transparent relative flex flex-col items-center justify-end pb-4 sm:pb-6 md:pb-10">
-              <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-50"></div>
-              <span className="text-white/20 tracking-[0.3em] sm:tracking-[0.5em] text-[5px] sm:text-[8px] md:text-sm uppercase">Silhouette</span>
-              <span className="text-white/10 tracking-[0.1em] sm:tracking-[0.2em] text-[4px] sm:text-[6px] md:text-[10px] uppercase mt-1 md:mt-2 text-center">Prop Placeholder</span>
+            <div 
+              className="w-24 h-[160px] sm:w-40 sm:h-[280px] md:w-72 md:h-[500px] border border-white/10 bg-black/50 relative flex flex-col items-center justify-end overflow-hidden group cursor-pointer"
+              onClick={() => setShowMemo(!showMemo)}
+            >
+              <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-50 z-20 pointer-events-none"></div>
+              <img 
+                src={currentMember.image} 
+                alt={currentMember.name}
+                className="absolute inset-0 w-full h-full object-cover object-top grayscale contrast-125 brightness-75 opacity-80 mix-blend-luminosity z-10 transition-all duration-700 group-hover:grayscale-0 group-hover:mix-blend-normal group-hover:opacity-100 group-hover:brightness-100"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-20 pointer-events-none"></div>
+              
+              {/* Click hint */}
+              <div className="absolute bottom-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-[6px] sm:text-[8px] tracking-[0.2em] text-white/70 bg-black/50 px-2 py-1 border border-white/20 backdrop-blur-sm">CLICK TO VIEW DATA</span>
+              </div>
             </div>
+
+            {/* Memo Popup */}
+            <AnimatePresence>
+              {showMemo && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className="absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 sm:w-64 bg-black/90 border border-white/20 p-4 sm:p-6 backdrop-blur-md shadow-2xl"
+                >
+                  <div className="flex justify-between items-start mb-4 border-b border-white/10 pb-2">
+                    <span className="text-[8px] sm:text-[10px] tracking-[0.3em] text-white/50 uppercase">Visual Data</span>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setShowMemo(false); }} 
+                      className="text-white/50 hover:text-white text-xs"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-light break-keep">
+                    {currentMember.appearance}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Right: Info */}
           <div className="w-1/2 h-full flex flex-col justify-center items-start text-left pl-4 sm:pl-8 md:pl-20">
             <div className="space-y-6 sm:space-y-8 md:space-y-12">
               <div>
-                <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-1 md:mb-2">Codename</h4>
-                <h2 className="font-serif text-xl sm:text-3xl md:text-5xl tracking-widest text-white/90">{currentMember.codename}</h2>
+                <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-1 md:mb-2">NAME</h4>
+                <h2 className="font-serif text-xl sm:text-3xl md:text-5xl tracking-widest text-white/90">{currentMember.name}</h2>
               </div>
               
               <div>
-                <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-1 md:mb-2">Specialty</h4>
-                <p className="text-xs sm:text-lg md:text-xl tracking-widest text-white/70 font-light">{currentMember.specialty}</p>
+                <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 md:mb-4">PROFILE DATA</h4>
+                <div className="grid grid-cols-2 gap-x-6 sm:gap-x-12 gap-y-4 sm:gap-y-6">
+                  {currentMember.stats.map((stat, idx) => (
+                    <div key={idx} className="flex flex-col">
+                      <span className="text-[6px] sm:text-[8px] md:text-[10px] text-white/40 tracking-[0.2em] mb-1">{stat.label}</span>
+                      <span className="text-xs sm:text-sm md:text-lg text-white/80 tracking-widest font-light">{stat.value}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div>
