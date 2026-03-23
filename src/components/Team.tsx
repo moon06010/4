@@ -87,6 +87,11 @@ export default function Team() {
   const [showMemo, setShowMemo] = useState(false);
 
   const handleWheel = useCallback((e: WheelEvent) => {
+    // Ignore wheel events if the user is scrolling inside a scrollable container
+    if ((e.target as HTMLElement)?.closest?.('.overflow-y-auto')) {
+      return;
+    }
+
     if (isScrolling) return;
     
     if (e.deltaY > 50) {
@@ -100,17 +105,19 @@ export default function Team() {
     }
   }, [isScrolling]);
 
-  // Touch support for mobile swipe
-  const [touchStart, setTouchStart] = useState(0);
-  const handleTouchStart = (e: React.TouchEvent) => setTouchStart(e.touches[0].clientY);
+  // Touch support for mobile swipe (Horizontal)
+  const [touchStartX, setTouchStartX] = useState(0);
+  const handleTouchStart = (e: React.TouchEvent) => setTouchStartX(e.touches[0].clientX);
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (isScrolling) return;
-    const touchEnd = e.changedTouches[0].clientY;
-    if (touchStart - touchEnd > 50) {
+    const touchEndX = e.changedTouches[0].clientX;
+    if (touchStartX - touchEndX > 50) {
+      // Swiped left -> next
       setIsScrolling(true);
       setCurrentIndex((prev) => Math.min(prev + 1, TEAM.length - 1));
       setTimeout(() => setIsScrolling(false), 1000);
-    } else if (touchStart - touchEnd < -50) {
+    } else if (touchStartX - touchEndX < -50) {
+      // Swiped right -> prev
       setIsScrolling(true);
       setCurrentIndex((prev) => Math.max(prev - 1, 0));
       setTimeout(() => setIsScrolling(false), 1000);
@@ -253,13 +260,47 @@ export default function Team() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Scroll Indicator */}
-      <div className="absolute right-2 md:right-12 top-1/2 -translate-y-1/2 flex flex-col gap-2 md:gap-4 z-20">
+      {/* Mobile Navigation Arrows */}
+      <div className="absolute inset-x-2 top-[30%] -translate-y-1/2 flex justify-between z-30 md:hidden pointer-events-none">
+        <button 
+          onClick={() => {
+            if (isScrolling) return;
+            setIsScrolling(true);
+            setCurrentIndex((prev) => Math.max(prev - 1, 0));
+            setTimeout(() => setIsScrolling(false), 1000);
+          }}
+          disabled={currentIndex === 0}
+          className={`p-4 pointer-events-auto transition-opacity ${currentIndex === 0 ? 'opacity-0' : 'opacity-50 hover:opacity-100'}`}
+          aria-label="Previous member"
+        >
+          <div className="w-4 h-4 border-t border-l border-white transform -rotate-45"></div>
+        </button>
+        <button 
+          onClick={() => {
+            if (isScrolling) return;
+            setIsScrolling(true);
+            setCurrentIndex((prev) => Math.min(prev + 1, TEAM.length - 1));
+            setTimeout(() => setIsScrolling(false), 1000);
+          }}
+          disabled={currentIndex === TEAM.length - 1}
+          className={`p-4 pointer-events-auto transition-opacity ${currentIndex === TEAM.length - 1 ? 'opacity-0' : 'opacity-50 hover:opacity-100'}`}
+          aria-label="Next member"
+        >
+          <div className="w-4 h-4 border-t border-r border-white transform rotate-45"></div>
+        </button>
+      </div>
+
+      {/* Navigation Indicator */}
+      <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 flex flex-col gap-3 md:gap-4 z-20">
         {TEAM.map((_, idx) => (
-          <div 
+          <button 
             key={idx} 
-            className={`w-1 transition-all duration-500 ${idx === currentIndex ? 'h-6 md:h-8 bg-white/60' : 'h-2 bg-white/20'}`}
-          />
+            onClick={() => setCurrentIndex(idx)}
+            className="p-2 -m-2 flex justify-center"
+            aria-label={`Go to team member ${idx + 1}`}
+          >
+            <div className={`w-1 transition-all duration-500 ${idx === currentIndex ? 'h-8 md:h-10 bg-white' : 'h-3 bg-white/30 hover:bg-white/50'}`} />
+          </button>
         ))}
       </div>
     </motion.div>
