@@ -54,7 +54,7 @@ export default function Home() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 1 } }}
       transition={{ duration: 1.5 }}
-      className="relative z-10 w-full h-full flex flex-row"
+      className="relative z-10 w-full h-full flex flex-col md:flex-row"
     >
       {SEASONS.map((season, index) => (
         <motion.div
@@ -62,7 +62,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: index * 0.2 }}
-          className={`group relative flex-1 h-full border-r border-white/5 last:border-r-0 flex flex-col justify-center items-center cursor-pointer overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+          className={`group relative flex-1 h-full border-b md:border-b-0 md:border-r border-white/5 last:border-b-0 md:last:border-r-0 flex flex-col justify-center items-center cursor-pointer overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
             hoveredSeason === season.id ? 'flex-[1.5]' : hoveredSeason ? 'flex-[0.8] opacity-30' : 'flex-1'
           }`}
           onMouseEnter={() => setHoveredSeason(season.id)}
@@ -79,7 +79,7 @@ export default function Home() {
           <div className="relative z-20 flex flex-col items-center text-center px-1 sm:px-4 md:px-6 w-full">
             {/* Kanji */}
             <motion.div 
-              className="font-serif text-3xl sm:text-5xl md:text-8xl lg:text-9xl text-white/5 mb-2 md:mb-8 font-light tracking-tighter select-none"
+              className="font-serif text-4xl sm:text-5xl md:text-8xl lg:text-9xl text-white/5 mb-1 md:mb-8 font-light tracking-tighter select-none"
               animate={{ 
                 scale: hoveredSeason === season.id ? 1.05 : 1,
                 color: hoveredSeason === season.id ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.05)'
@@ -90,12 +90,12 @@ export default function Home() {
             </motion.div>
 
             {/* English Name */}
-            <h2 className="font-serif text-[8px] sm:text-sm md:text-xl tracking-[0.2em] sm:tracking-[0.4em] mb-1 md:mb-2 text-white/60 group-hover:text-white transition-colors duration-500 ml-[0.2em] sm:ml-[0.4em]">
+            <h2 className="font-serif text-[10px] sm:text-sm md:text-xl tracking-[0.2em] sm:tracking-[0.4em] mb-1 md:mb-2 text-white/60 group-hover:text-white transition-colors duration-500 ml-[0.2em] sm:ml-[0.4em]">
               {season.name}
             </h2>
 
             {/* Subtitle */}
-            <h3 className="text-[5px] sm:text-[8px] md:text-[10px] uppercase tracking-[0.1em] sm:tracking-[0.2em] text-white/30 mb-2 md:mb-8 group-hover:text-white/70 transition-colors duration-500 text-center">
+            <h3 className="text-[8px] sm:text-[8px] md:text-[10px] uppercase tracking-[0.1em] sm:tracking-[0.2em] text-white/30 mb-1 md:mb-8 group-hover:text-white/70 transition-colors duration-500 text-center">
               {season.subtitle}
             </h3>
 
@@ -110,12 +110,12 @@ export default function Home() {
               }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              <p className="text-[8px] sm:text-[10px] md:text-xs text-white/50 leading-relaxed max-w-[120px] sm:max-w-[180px] md:max-w-[220px] font-light mb-2 sm:mb-4 md:mb-8 hidden sm:block">
+              <p className="text-[9px] sm:text-[10px] md:text-xs text-white/50 leading-relaxed max-w-[160px] sm:max-w-[180px] md:max-w-[220px] font-light mb-2 sm:mb-4 md:mb-8 block">
                 {season.description}
               </p>
               
               {/* Character Image Box */}
-              <div className="w-16 h-24 sm:w-24 sm:h-32 md:w-40 md:h-56 lg:w-48 lg:h-64 border border-white/10 bg-black/50 flex flex-col items-center justify-center relative overflow-hidden group/box backdrop-blur-sm">
+              <div className="w-16 h-16 sm:w-24 sm:h-32 md:w-40 md:h-56 lg:w-48 lg:h-64 border border-white/10 bg-black/50 flex flex-col items-center justify-center relative overflow-hidden group/box backdrop-blur-sm">
                 {/* Tint and Gradient Overlays for blending */}
                 <div className="absolute inset-0 bg-blue-900/20 opacity-60 group-hover/box:opacity-20 transition-opacity duration-700 z-10 mix-blend-color"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>

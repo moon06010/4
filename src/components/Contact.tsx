@@ -22,7 +22,7 @@ export default function Contact() {
       />
 
       <div className="w-full max-w-2xl px-6 md:px-8 flex flex-col items-center">
-        <p className="text-[6px] sm:text-[8px] md:text-[10px] text-white/30 tracking-[0.1em] sm:tracking-[0.2em] mb-12 sm:mb-16 md:mb-24 text-center font-light leading-relaxed">
+        <p className="text-[9px] sm:text-[10px] md:text-[10px] text-white/30 tracking-[0.1em] sm:tracking-[0.2em] mb-12 sm:mb-16 md:mb-24 text-center font-light leading-relaxed">
           모든 계약은 철저한 기밀로 유지되며,<br className="block sm:hidden" /> 체결된 계약은 번복할 수 없습니다.
         </p>
 
@@ -31,7 +31,7 @@ export default function Contact() {
             <input 
               type="text" 
               placeholder="TARGET INFO" 
-              className="w-full bg-transparent border-b border-white/20 py-2 text-xs sm:text-sm tracking-widest text-white/80 placeholder:text-white/20 focus:outline-none focus:border-white/60 transition-colors"
+              className="w-full bg-transparent border-b border-white/20 py-2 text-sm tracking-widest text-white/80 placeholder:text-white/20 focus:outline-none focus:border-white/60 transition-colors"
             />
           </div>
           
@@ -39,7 +39,7 @@ export default function Contact() {
             <input 
               type="text" 
               placeholder="DEADLINE" 
-              className="w-full bg-transparent border-b border-white/20 py-2 text-xs sm:text-sm tracking-widest text-white/80 placeholder:text-white/20 focus:outline-none focus:border-white/60 transition-colors"
+              className="w-full bg-transparent border-b border-white/20 py-2 text-sm tracking-widest text-white/80 placeholder:text-white/20 focus:outline-none focus:border-white/60 transition-colors"
             />
           </div>
 
@@ -47,7 +47,7 @@ export default function Contact() {
             <input 
               type="password" 
               placeholder="CLIENT PASSWORD" 
-              className="w-full bg-transparent border-b border-white/20 py-2 text-xs sm:text-sm tracking-widest text-white/80 placeholder:text-white/20 focus:outline-none focus:border-white/60 transition-colors"
+              className="w-full bg-transparent border-b border-white/20 py-2 text-sm tracking-widest text-white/80 placeholder:text-white/20 focus:outline-none focus:border-white/60 transition-colors"
             />
           </div>
 

@@ -41,7 +41,7 @@ export default function Services() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 1 } }}
       transition={{ duration: 1.5 }}
-      className="relative z-10 w-full h-full flex flex-row pt-20 sm:pt-24 md:pt-32 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-8 md:px-20"
+      className="relative z-10 w-full h-full flex flex-col md:flex-row pt-24 sm:pt-24 md:pt-32 pb-20 sm:pb-20 md:pb-24 px-6 sm:px-8 md:px-20"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -67,8 +67,8 @@ export default function Services() {
       </div>
 
       {/* Left: List */}
-      <div className="relative z-20 w-1/2 md:w-1/3 h-full flex flex-col justify-center pl-2 sm:pl-0">
-        <div className="space-y-6 sm:space-y-8 md:space-y-12">
+      <div className="relative z-20 w-full md:w-1/3 h-1/2 md:h-full flex flex-col justify-center items-center md:items-start pl-0">
+        <div className="space-y-6 sm:space-y-8 md:space-y-12 w-full max-w-xs md:max-w-none text-center md:text-left">
           {SERVICES.map((service) => (
             <div 
               key={service.id}
@@ -76,10 +76,10 @@ export default function Services() {
               onMouseEnter={() => setActiveService(service)}
               onClick={() => setActiveService(service)}
             >
-              <h3 className={`font-serif text-sm sm:text-xl md:text-2xl tracking-widest transition-colors duration-500 ${activeService.id === service.id ? 'text-white' : 'text-white/30 group-hover:text-white/60'}`}>
+              <h3 className={`font-serif text-lg sm:text-xl md:text-2xl tracking-widest transition-colors duration-500 ${activeService.id === service.id ? 'text-white' : 'text-white/30 group-hover:text-white/60'}`}>
                 {service.title}
               </h3>
-              <p className={`text-[8px] sm:text-[10px] md:text-xs tracking-[0.1em] sm:tracking-[0.2em] mt-1 md:mt-2 transition-colors duration-500 ${activeService.id === service.id ? 'text-white/70' : 'text-white/20 group-hover:text-white/40'}`}>
+              <p className={`text-[10px] sm:text-[10px] md:text-xs tracking-[0.1em] sm:tracking-[0.2em] mt-1 md:mt-2 transition-colors duration-500 ${activeService.id === service.id ? 'text-white/70' : 'text-white/20 group-hover:text-white/40'}`}>
                 {service.subtitle}
               </p>
             </div>
@@ -88,7 +88,7 @@ export default function Services() {
       </div>
 
       {/* Right: Description */}
-      <div className="relative z-20 w-1/2 md:w-2/3 h-full flex items-center justify-end pr-2 sm:pr-0">
+      <div className="relative z-20 w-full md:w-2/3 h-1/2 md:h-full flex items-start md:items-center justify-center md:justify-end pr-0 pt-8 md:pt-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={`desc-${activeService.id}`}
@@ -96,9 +96,9 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-right max-w-[150px] sm:max-w-xs md:max-w-md"
+            className="text-center md:text-right max-w-[280px] sm:max-w-xs md:max-w-md"
           >
-            <p className="font-serif text-[10px] sm:text-sm md:text-lg text-white/80 tracking-widest leading-relaxed">
+            <p className="font-serif text-xs sm:text-sm md:text-lg text-white/80 tracking-widest leading-relaxed">
               {activeService.description}
             </p>
           </motion.div>

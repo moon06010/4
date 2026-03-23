@@ -36,7 +36,7 @@ export default function App() {
           <Wind className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4" strokeWidth={1} />
           <Snowflake className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4" strokeWidth={1} />
         </div>
-        <h1 className="font-serif text-sm sm:text-xl md:text-3xl lg:text-4xl tracking-[0.3em] sm:tracking-[0.4em] font-light text-white/90 ml-[0.3em] sm:ml-[0.4em]">
+        <h1 className="font-serif text-base sm:text-xl md:text-3xl lg:text-4xl tracking-[0.3em] sm:tracking-[0.4em] font-light text-white/90 ml-[0.3em] sm:ml-[0.4em]">
           四季 CONSULTING
         </h1>
         <div className="h-[1px] w-6 sm:w-8 md:w-12 bg-white/20 mt-4 sm:mt-6 md:mt-8"></div>
@@ -59,7 +59,7 @@ export default function App() {
         transition={{ duration: 1.5, ease: "easeOut", delay: 1 }}
         className="absolute bottom-0 w-full z-30 flex justify-center pb-4 sm:pb-6 md:pb-8 pt-6 sm:pt-8 md:pt-12 bg-gradient-to-t from-black/90 via-black/50 to-transparent"
       >
-        <nav className="flex gap-4 sm:gap-6 md:gap-12 text-[6px] sm:text-[8px] md:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-white/40">
+        <nav className="flex gap-4 sm:gap-6 md:gap-12 text-[9px] sm:text-[10px] md:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-white/40">
           {(['HOME', 'SERVICES', 'TEAM', 'CONTACT'] as Page[]).map((item) => (
             <button 
               key={item} 

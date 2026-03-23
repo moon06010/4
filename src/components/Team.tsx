@@ -146,15 +146,15 @@ export default function Team() {
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           exit={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
-          className="w-full max-w-6xl h-full flex flex-row"
+          className="w-full max-w-6xl h-full flex flex-col md:flex-row"
         >
           {/* Left: Silhouette */}
-          <div className="w-1/2 h-full flex items-center justify-center relative">
+          <div className="w-full md:w-1/2 h-[45%] md:h-full flex items-center justify-center relative">
             <div className="absolute inset-0 flex items-center justify-center opacity-10">
-              <span className="font-serif text-[80px] sm:text-[150px] md:text-[300px]">{currentMember.season}</span>
+              <span className="font-serif text-[120px] sm:text-[150px] md:text-[300px]">{currentMember.season}</span>
             </div>
             <div 
-              className="w-24 h-[160px] sm:w-40 sm:h-[280px] md:w-72 md:h-[500px] border border-white/10 bg-black/50 relative flex flex-col items-center justify-end overflow-hidden group cursor-pointer"
+              className="w-32 h-[200px] sm:w-40 sm:h-[280px] md:w-72 md:h-[500px] border border-white/10 bg-black/50 relative flex flex-col items-center justify-end overflow-hidden group cursor-pointer"
               onClick={() => setShowMemo(!showMemo)}
             >
               <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-50 z-20 pointer-events-none"></div>
@@ -199,21 +199,21 @@ export default function Team() {
           </div>
 
           {/* Right: Info */}
-          <div className="w-1/2 h-full flex flex-col justify-center items-start text-left pl-4 sm:pl-8 md:pl-20">
-            <div className="space-y-4 sm:space-y-8 md:space-y-12 w-full max-w-md">
-              <div>
+          <div className="w-full md:w-1/2 h-[55%] md:h-full flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-left px-6 sm:px-8 md:pl-20 overflow-y-auto pb-8 pt-4 md:pt-0">
+            <div className="space-y-5 sm:space-y-8 md:space-y-12 w-full max-w-md flex flex-col items-center md:items-start">
+              <div className="flex flex-col items-center md:items-start">
                 <div className="mb-2 md:mb-4 opacity-40">
                   <currentMember.icon className="w-4 h-4 md:w-5 md:h-5" strokeWidth={1} />
                 </div>
                 <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-1 md:mb-2">NAME</h4>
-                <h2 className="font-serif text-xl sm:text-3xl md:text-5xl tracking-widest text-white/90">{currentMember.name}</h2>
+                <h2 className="font-serif text-2xl sm:text-3xl md:text-5xl tracking-widest text-white/90">{currentMember.name}</h2>
               </div>
               
-              <div>
-                <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 md:mb-4">PROFILE DATA</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-12 gap-y-2 sm:gap-y-6">
+              <div className="w-full">
+                <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 md:mb-4 text-center md:text-left">PROFILE DATA</h4>
+                <div className="grid grid-cols-2 gap-x-4 sm:gap-x-12 gap-y-3 sm:gap-y-6 text-center md:text-left">
                   {currentMember.stats.map((stat, idx) => (
-                    <div key={idx} className={`flex flex-col ${stat.label === 'WEAPON' ? 'sm:col-span-2' : ''}`}>
+                    <div key={idx} className={`flex flex-col ${stat.label === 'WEAPON' ? 'col-span-2' : ''}`}>
                       <span className="text-[6px] sm:text-[8px] md:text-[10px] text-white/40 tracking-[0.2em] mb-1">{stat.label}</span>
                       <span className="text-[10px] sm:text-sm md:text-lg text-white/80 tracking-widest font-light">{stat.value}</span>
                     </div>
@@ -221,10 +221,10 @@ export default function Team() {
                 </div>
               </div>
 
-              <div>
+              <div className="w-full flex flex-col items-center md:items-start">
                 <h4 className="text-white/30 text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-1 md:mb-2">Success Rate</h4>
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-start gap-1 sm:gap-3 md:gap-4">
-                  <span className="font-mono text-lg sm:text-2xl md:text-3xl text-white/80">{currentMember.successRate}</span>
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-center md:justify-start gap-1 sm:gap-3 md:gap-4">
+                  <span className="font-mono text-2xl sm:text-2xl md:text-3xl text-white/80">{currentMember.successRate}</span>
                   <span className="font-mono text-[8px] sm:text-[10px] md:text-xs text-white/20">{currentMember.encryptedData}</span>
                 </div>
               </div>
@@ -254,7 +254,7 @@ export default function Team() {
       </AnimatePresence>
 
       {/* Scroll Indicator */}
-      <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 flex flex-col gap-3 md:gap-4 z-20">
+      <div className="absolute right-2 md:right-12 top-1/2 -translate-y-1/2 flex flex-col gap-2 md:gap-4 z-20">
         {TEAM.map((_, idx) => (
           <div 
             key={idx} 
