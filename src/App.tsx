@@ -57,7 +57,7 @@ export default function App() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
         transition={{ duration: 1.5, ease: "easeOut", delay: 1 }}
-        className="absolute bottom-0 w-full z-30 flex justify-center pb-4 sm:pb-6 md:pb-8 pt-6 sm:pt-8 md:pt-12 bg-gradient-to-t from-black/90 via-black/50 to-transparent"
+        className="absolute bottom-0 w-full z-30 flex justify-center pb-8 sm:pb-6 md:pb-8 pt-12 sm:pt-8 md:pt-12 bg-gradient-to-t from-black via-black/80 to-transparent"
       >
         <nav className="flex gap-4 sm:gap-6 md:gap-12 text-[9px] sm:text-[10px] md:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-white/40">
           {(['HOME', 'SERVICES', 'TEAM', 'CONTACT'] as Page[]).map((item) => (
