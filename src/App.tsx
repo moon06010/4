@@ -40,6 +40,23 @@ export default function App() {
           四季 CONSULTING
         </h1>
         <div className="h-[1px] w-6 sm:w-8 md:w-12 bg-white/20 mt-4 sm:mt-6 md:mt-8"></div>
+
+        {/* Mobile Navigation (Under Header) */}
+        <nav className="flex sm:hidden gap-5 mt-5 text-[10px] tracking-[0.2em] text-white/40 pointer-events-auto">
+          {(['HOME', 'SERVICES', 'TEAM', 'CONTACT'] as Page[]).map((item) => (
+            <button 
+              key={item} 
+              onClick={() => setCurrentPage(item)}
+              className={`transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:h-[1px] after:bg-white after:transition-all after:duration-300 ${
+                currentPage === item 
+                  ? 'text-white after:w-full' 
+                  : 'hover:text-white after:w-0 hover:after:w-full'
+              }`}
+            >
+              {item}
+            </button>
+          ))}
+        </nav>
       </motion.header>
 
       {/* Main Content Area */}
@@ -52,12 +69,12 @@ export default function App() {
         </AnimatePresence>
       </div>
 
-      {/* Footer Navigation */}
+      {/* Footer Navigation (Desktop Only) */}
       <motion.footer 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
         transition={{ duration: 1.5, ease: "easeOut", delay: 1 }}
-        className="absolute bottom-0 w-full z-30 flex justify-center pb-8 sm:pb-6 md:pb-8 pt-12 sm:pt-8 md:pt-12 bg-gradient-to-t from-black via-black/80 to-transparent"
+        className="absolute bottom-0 w-full z-30 hidden sm:flex justify-center pb-8 sm:pb-6 md:pb-8 pt-12 sm:pt-8 md:pt-12 bg-gradient-to-t from-black via-black/80 to-transparent"
       >
         <nav className="flex gap-4 sm:gap-6 md:gap-12 text-[9px] sm:text-[10px] md:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-white/40">
           {(['HOME', 'SERVICES', 'TEAM', 'CONTACT'] as Page[]).map((item) => (
