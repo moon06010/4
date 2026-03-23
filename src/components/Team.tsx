@@ -135,7 +135,7 @@ export default function Team() {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -100, transition: { duration: 1 } }}
       transition={{ duration: 1.5, ease: [0.25, 1, 0.5, 1] }}
-      className="relative z-10 w-full h-full flex items-center justify-center overflow-hidden pt-16 sm:pt-20 pb-20 sm:pb-24 px-4 sm:px-6 md:px-0"
+      className="relative z-10 w-full h-full flex items-center justify-center overflow-hidden pt-[140px] sm:pt-20 pb-20 sm:pb-24 px-4 sm:px-6 md:px-0"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >

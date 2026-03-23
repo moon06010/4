@@ -41,7 +41,7 @@ export default function Services() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 1 } }}
       transition={{ duration: 1.5 }}
-      className="relative z-10 w-full h-full flex flex-col md:flex-row pt-24 sm:pt-24 md:pt-32 pb-20 sm:pb-20 md:pb-24 px-6 sm:px-8 md:px-20"
+      className="relative z-10 w-full h-full flex flex-col md:flex-row pt-[140px] sm:pt-24 md:pt-32 pb-20 sm:pb-20 md:pb-24 px-6 sm:px-8 md:px-20"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">

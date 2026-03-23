@@ -10,7 +10,7 @@ export default function Contact() {
       animate={{ opacity: 1, filter: 'contrast(100%) brightness(100%) grayscale(0%)' }}
       exit={{ opacity: 0, transition: { duration: 0.5 } }}
       transition={{ duration: 0.8, ease: "circOut" }}
-      className="relative z-10 w-full h-full flex flex-col items-center justify-center bg-black pt-16 sm:pt-20 pb-20 sm:pb-24"
+      className="relative z-10 w-full h-full flex flex-col items-center justify-center bg-black pt-[140px] sm:pt-20 pb-20 sm:pb-24"
     >
       {/* Glitch overlay on mount */}
       <motion.div 
